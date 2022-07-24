@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text Generator</title>
+    <link rel="stylesheet" href="../../../base.css" />
+    <style>
+      body {
+        min-height: 100vh;
+        display: grid;
+        align-items: center;
+      }
+
+      .typer {
+        margin: 0 auto;
+        background: white;
+        width: 500px;
+        padding: 2rem;
+        padding: 2rem;
+        border-radius: 3px;
+        display: grid;
+      }
+
+      textarea {
+        width: 100%;
+        resize: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="typer">
+      <label for="sarcastic">
+        <input
+          type="radio"
+          value="sarcastic"
+          id="sarcastic"
+          name="filter"
+          checked
+        />
+        Sarcastic
+      </label>
+      <label for="funky">
+        <input type="radio" value="funky" id="funky" name="filter" />
+        Funky
+      </label>
+      <label for="unable">
+        <input type="radio" value="unable" id="unable" name="filter" />
+        Unable to Structure a Sentence
+      </label>
+      <label for="stutter">
+        <input type="radio" value="stutter" id="stutter" name="filter" />
+        Stuttering
+      </label>
+      <label for="mate">
+        <input type="radio" value="mate" id="mate" name="filter" />
+        Mate-zoned
+      </label>
+      <textarea name="text" rows="6" cols="50">
+Libreng sakay is...uh...what we will have...uhh what what we have done is we will continue the libreng sakay, but what our...what...we we are going to stop the...uuuhhhmmmm, ahhhh libreng sakay in MRT 3
+</textarea
+      >
+      <p class="result"></p>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
