@@ -1,62 +1,68 @@
-function Slider(slider) {
-  if (!(slider instanceof Element)) {
-    throw new Error('No slider passed in');
+class Slider {
+  constructor(slider) {
+    if (!(slider instanceof Element)) {
+      throw new Error("No slider passed in");
+    }
+
+    this.slider = slider;
+
+    this.slides = slider.querySelector(".slides");
+    const prevBtn = slider.querySelector(".goToPrev");
+    const nextBtn = slider.querySelector(".goToNext");
+
+    prevBtn.addEventListener("click", () => {
+      this.move("back");
+    });
+    nextBtn.addEventListener("click", () => {
+      this.move();
+    });
+
+    this.startSlider();
+    this.applyClasses();
   }
 
-  let current;
-  let prev;
-  let next;
-
-  const slides = slider.querySelector('.slides');
-  const prevBtn = slider.querySelector('.goToPrev');
-  const nextBtn = slider.querySelector('.goToNext');
-
-  function startSlider() {
-    current = slider.querySelector('.current') || slides.firstElementChild;
-    prev = current.previousElementSibling || slides.lastElementChild;
-    next = current.nextElementSibling || slides.firstElementChild;
-    // console.log({prev, current, next});
+  startSlider() {
+    this.current =
+      this.slider.querySelector(".current") || this.slides.firstElementChild;
+    this.prev =
+      this.current.previousElementSibling || this.slides.lastElementChild;
+    this.next =
+      this.current.nextElementSibling || this.slides.firstElementChild;
+    // console.log({ this.prev, current, next });
   }
 
-  function applyClasses() {
-    current.classList.add('current');
-    prev.classList.add('prev');
-    next.classList.add('next');
+  applyClasses() {
+    this.current.classList.add("current");
+    this.prev.classList.add("prev");
+    this.next.classList.add("next");
   }
 
-  function move(direction) {
-    const classesToRemove = ['prev', 'current', 'next'];
+  move(direction) {
+    const classesToRemove = ["prev", "current", "next"];
 
-    prev.classList.remove(...classesToRemove);
-    current.classList.remove(...classesToRemove);
-    next.classList.remove(...classesToRemove);
+    this.prev.classList.remove(...classesToRemove);
+    this.current.classList.remove(...classesToRemove);
+    this.next.classList.remove(...classesToRemove);
 
     if (direction === "back") {
-      [prev, current, next] = [
-        prev.previousElementSibling || slides.lastElementChild,
-        prev,
-        current];
+      [this.prev, this.current, this.next] = [
+        this.prev.previousElementSibling || this.slides.lastElementChild,
+        this.prev,
+        this.current,
+      ];
     } else {
-      [prev, current, next] = [
-        current,
-        next,
-        next.nextElementSibling || slides.firstElementChild
+      [this.prev, this.current, this.next] = [
+        this.current,
+        this.next,
+        this.next.nextElementSibling || this.slides.firstElementChild,
       ];
     }
-    applyClasses();
+    this.applyClasses();
   }
-
-  startSlider();
-  applyClasses();
-
-  prevBtn.addEventListener("click", () => {
-    move("back");
-  });
-  nextBtn.addEventListener("click", () => {
-    move();
-  });
-
 }
 
-const slider1 = Slider(document.querySelector('.slider'));
-const dogSlider = Slider(document.querySelector('.dog-slider'));
+const slider1 = new Slider(document.querySelector(".slider"));
+const dogSlider = new Slider(document.querySelector(".dog-slider"));
+
+console.log(slider1);
+// console.log(dogSlider);
